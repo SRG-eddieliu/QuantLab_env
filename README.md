@@ -94,6 +94,7 @@ Risk Budget	Tight Tracking Error Limit	The tightest limit on residual risk (e.g.
     b) Percentage-based slippage: 0.05% of trade value
     c) market impact model (future dev): TC ~ OrderSize / MarketLiquidity * Volatility
   - Liquidity Cost: model by trading volume, Bid/Ask Spread
+  - look existing packages to call
 
 7. Strategy Integrator (To Do): Risk Budgeting to set allocations on different Strategies
   - Risk Parity, Equal weight, MVO
