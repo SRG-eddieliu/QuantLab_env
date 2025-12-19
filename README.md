@@ -1,4 +1,31 @@
-Quantlib End to End process
+End-to-End Systematic Research Platform for Data-Driven Decision Systems
+
+I am developing an end-to-end quantitative research platform designed to study how structured signals emerge from noisy, high-dimensional data and how they can be translated into robust decision systems under real-world constraints. The project emphasizes statistical validation, interpretability, and scalability rather than isolated model performance.
+
+Data Pipeline
+I built a modular data ingestion and cleaning pipeline that pulls raw price and fundamental data via APIs, applies quality checks, normalizes schemas, and stores cleaned parquet datasets for downstream research. The pipeline enforces strict time alignment and lagging conventions to avoid look-ahead bias, particularly for event-driven fundamentals and analyst revisions.
+
+Factor Research Library
+On top of this pipeline, I implemented a configurable factor library that computes a broad set of equity signals spanning momentum, value, quality, growth, liquidity, size, forensic accounting, and analyst information. Each factor undergoes standardized cleaning (coverage filtering, winsorization, cross-sectional normalization) and is evaluated using rank IC/IR, decile spreads, long–short portfolio statistics, and Fama-French regressions. All diagnostics are stored systematically to support research iteration and reproducibility.
+
+Thematic Factor Aggregation
+To reduce noise and improve robustness, I aggregate raw factors into economically interpretable thematic composites (e.g., Value, Quality, Momentum, Liquidity, Information Drift). Composite construction is configuration-driven and supports multiple weighting schemes (equal weight, inverse volatility, IC/IR-weighted), allowing transparent comparison across design choices.
+
+Alpha Modeling and ML Integration
+Building on the factor layer, I am developing alpha models that combine thematic composites with selected raw signals. Linear models are explicitly “purified” via factor regressions to isolate true alpha, while non-linear models (e.g., XGBoost, Random Forests) are regularized to mitigate overfitting. Machine learning is treated as an augmentation layer rather than a black box.
+
+Portfolio Construction and Risk Design (In Progress)
+The next stage integrates multi-strategy portfolio construction with explicit risk and trading constraints (factor neutrality, turnover, liquidity, position sizing). Different alpha sleeves—long-horizon systematic, event-driven, cyclical, and ML-optimized—are designed with distinct risk budgets and optimization objectives, reflecting real institutional portfolio design.
+
+Future Extensions
+Future work includes a centralized multi-factor risk model, transaction-cost modeling, Black-Litterman integration, and reinforcement learning as a higher-level allocator across strategies rather than a direct signal generator.
+
+
+
+
+
+
+-------------------detailed note----------------------------------
 
 1. Data Pipeline (Done): Data Ingestion by calling API and Perform basic data cleaning
 2. Factor Library (Done): Create factors based on data from pipeline and perform factor analysis: Rank IC/IR, decile performance, LS portfolio, FF coefficient
