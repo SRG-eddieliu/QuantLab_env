@@ -1,6 +1,17 @@
-# QuantLab Environment Overview
+# QuantLab: Modular Quantitative Investment Platform
 
-This repo documents the end-to-end research stack and environment setup used across the QuantLab projects. It’s the “map” and quick demo script for how data flows from raw APIs through factors, composites, alphas, and into portfolio construction.
+QuantLab is a systematic, end-to-end research and execution pipeline built to bridge the gap between financial theory and production-grade engineering. It’s organized as sequential modules (Step 0–6) and emphasizes scalability, risk awareness, and transaction-cost realism.
+
+## Module map
+- **Step 0: Platform intro & environment** – env reproducibility, roadmap, orchestration (this repo).
+- **Step 1: Data ingestion** – ETL for prices, fundamentals, alt data; lagging/QC; parquet outputs.
+- **Step 2: Factor research** – cross-sectional cleaning (coverage, winsor, fill, sector-neutral, z-score); IC/IR, deciles, LS PnL, FF regressions, coverage stats.
+- **Step 3: Alpha library** – purified composites/raws; weighting engines; ML pod (regularized, walk-forward).
+- **Step 4: Risk engine** – (planned) risk model, exposures, limits.
+- **Step 5: Portfolio optimizer** – (planned) RP/MVO/BL with TC/turnover/liquidity constraints.
+- **Step 6: Backtest engine** – (planned) vectorized/event-driven backtests with slippage/costs and attribution.
+
+Core philosophy: modular (swap/test each step), reproducible (locked env, versioned artifacts), realistic (look-ahead guards, slippage/TC-aware).
 
 ## System outline
 - **Data pipeline (done)**: ingest raw prices/fundamentals via API, QC/lag, and store parquet in `data/data-processed`. Strict time alignment to avoid look-ahead, especially for event-driven fundamentals/revisions.
